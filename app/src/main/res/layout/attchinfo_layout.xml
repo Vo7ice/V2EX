@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="5dp"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingEnd="3dp"
+    android:paddingStart="3dp">
+
+    <TextView
+        android:id="@+id/text_user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="Vo7ice"
+        android:textColor="@color/material_grey_700"
+        android:textSize="@dimen/attachinfo_textsize" />
+
+    <View
+        android:layout_width="3dp"
+        android:layout_height="3dp"
+        android:layout_marginStart="5dp"
+        android:background="@drawable/shape_round_circle" />
+
+    <TextView
+        android:id="@+id/text_node_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:padding="5dp"
+        android:text="V2EX"
+        android:textColor="@color/material_grey_700"
+        android:textSize="@dimen/attachinfo_textsize" />
+
+    <View
+        android:layout_width="3dp"
+        android:layout_height="3dp"
+        android:layout_marginStart="5dp"
+        android:background="@drawable/shape_round_circle" />
+
+    <TextView
+        android:id="@+id/text_last_modify"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:padding="5dp"
+        android:text="V2EX"
+        android:textColor="@color/material_grey_500"
+        android:textSize="@dimen/attachinfo_textsize" />
+</LinearLayout>

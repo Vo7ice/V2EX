@@ -1,0 +1,35 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".lastest.LastestActivity">
+    <item
+        android:id="@+id/action_lastest"
+        android:orderInCategory="100"
+        android:title="@string/menu_lastest"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_track_changes_24dp"/>
+
+    <item
+        android:id="@+id/action_hot"
+        android:orderInCategory="100"
+        android:title="@string/menu_hot"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_wb_sunny_24dp"/>
+    <item
+        android:id="@+id/action_all_nodes"
+        android:orderInCategory="100"
+        android:title="@string/menu_all_nodes"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_games_24dp"/>
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:title="@string/action_settings"
+        app:showAsAction="never"
+        android:icon="@drawable/ic_settings_24dp"/>
+    <item
+        android:id="@+id/action_share"
+        android:title="@string/menu_share"
+        app:showAsAction="never"
+        android:icon="@drawable/ic_share_24dp"/>
+</menu>
