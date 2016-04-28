@@ -5,6 +5,8 @@ import android.util.Log;
 import android.view.View;
 
 import com.cn.guojinhu.v2ex.R;
+import com.cn.guojinhu.v2ex.data.Member;
+import com.cn.guojinhu.v2ex.data.Node;
 import com.cn.guojinhu.v2ex.data.Post;
 import com.cn.guojinhu.v2ex.data.Reply;
 import com.cn.guojinhu.v2ex.utils.HttpUtils;
@@ -23,41 +25,29 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 import rx.subjects.Subject;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 public class PostDetailPresenter implements PostDetailContract.Presenter {
 
     private PostDetailContract.View mPostDetailView;
+    private Post mPost;
+    private Member mMember;
+    private Node mNode;
 
-    public PostDetailPresenter(PostDetailContract.View postDetailView) {
-        mPostDetailView = postDetailView;
+    public PostDetailPresenter(PostDetailContract.View postDetailView, Post post, Member member, Node node) {
+        mPostDetailView = checkNotNull(postDetailView,"mPostDetailView cannot be null");
+        mPost = checkNotNull(post);
+        mMember = checkNotNull(member);
+        mNode = checkNotNull(node);
 
         mPostDetailView.setPresenter(this);
     }
 
     @Override
     public void start() {
-    }
-
-    @Override
-    public void start(Post post) {
         mPostDetailView.showProgressbar(true);
         HttpUtils.V2EXService service = ServiceGenerator.createService(HttpUtils.V2EXService.class);
-        /*final Call<List<Reply>> replyList = service.getReplyListById(post.id);
-        replyList.enqueue(new Callback<List<Reply>>() {
-            @Override
-            public void onResponse(Response<List<Reply>> response, Retrofit retrofit) {
-                List<Reply> replies = response.body();
-                Log.i("Vo7ice", "size:" + replies.size());
-                for (Reply r : replies) {
-                    Log.i("Vo7ice","r::::"+r);
-                }
-            }
-
-            @Override
-            public void onFailure(Throwable t) {
-
-            }
-        });*/
-        service.getReplyListById(post.id)
+        service.getReplyListById(mPost.id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<List<Reply>>() {
@@ -82,4 +72,5 @@ public class PostDetailPresenter implements PostDetailContract.Presenter {
                     }
                 });
     }
+
 }

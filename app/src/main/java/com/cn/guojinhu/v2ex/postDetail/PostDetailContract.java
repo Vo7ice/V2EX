@@ -27,6 +27,5 @@ public class PostDetailContract {
     }
 
     interface Presenter extends BasePresenter {
-        void start(Post post);
     }
 }
