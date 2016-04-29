@@ -86,7 +86,6 @@ public class PostDetailFragment extends Fragment implements PostDetailContract.V
     public void onResume() {
         super.onResume();
         mPresenter.start();
-        mPresenter.start(post);
     }
 
     @Nullable

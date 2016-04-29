@@ -55,7 +55,7 @@ public class PostDetailActivity extends AppCompatActivity {
         }
 
 
-        mPresenter = new PostDetailPresenter(postDetailFragment);
+        mPresenter = new PostDetailPresenter(postDetailFragment,post,member,node);
     }
 
     @Override
