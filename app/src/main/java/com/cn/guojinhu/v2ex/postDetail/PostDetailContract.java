@@ -5,6 +5,7 @@ import android.view.View;
 
 import com.cn.guojinhu.v2ex.Base.BasePresenter;
 import com.cn.guojinhu.v2ex.Base.BaseView;
+import com.cn.guojinhu.v2ex.data.Member;
 import com.cn.guojinhu.v2ex.data.Post;
 import com.cn.guojinhu.v2ex.data.Reply;
 
@@ -13,7 +14,7 @@ import java.util.List;
 public class PostDetailContract {
 
     interface View extends BaseView<Presenter> {
-        void showUI(Post post);
+        void showUI(Post post, Member mMember);
 
         android.view.View setHeadView();
 

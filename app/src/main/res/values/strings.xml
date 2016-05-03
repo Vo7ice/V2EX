@@ -39,4 +39,6 @@
     <string name="last_modified_03"> Several Days Before</string>
 
     <string name="error_message"> Occur Error！ </string>
+
+    <string name="reply_count"> <xliff:g id="count">%1$s</xliff:g> Replies</string>
 </resources>

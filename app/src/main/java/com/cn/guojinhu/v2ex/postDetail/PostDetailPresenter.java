@@ -35,7 +35,7 @@ public class PostDetailPresenter implements PostDetailContract.Presenter {
     private Node mNode;
 
     public PostDetailPresenter(PostDetailContract.View postDetailView, Post post, Member member, Node node) {
-        mPostDetailView = checkNotNull(postDetailView,"mPostDetailView cannot be null");
+        mPostDetailView = checkNotNull(postDetailView, "mPostDetailView cannot be null");
         mPost = checkNotNull(post);
         mMember = checkNotNull(member);
         mNode = checkNotNull(node);
@@ -46,6 +46,7 @@ public class PostDetailPresenter implements PostDetailContract.Presenter {
     @Override
     public void start() {
         mPostDetailView.showProgressbar(true);
+        mPostDetailView.showUI(mPost,mMember);
         HttpUtils.V2EXService service = ServiceGenerator.createService(HttpUtils.V2EXService.class);
         service.getReplyListById(mPost.id)
                 .subscribeOn(Schedulers.io())
@@ -68,7 +69,7 @@ public class PostDetailPresenter implements PostDetailContract.Presenter {
                         Log.i("Vo7ice", "size:" + replyList.size());
                         mPostDetailView.replaceData(replyList);
                         int visibility = mPostDetailView.getHeaderVisibility();
-                        Log.i("Vo7ice","visibility:"+visibility);
+                        Log.i("Vo7ice", "visibility:" + visibility);
                     }
                 });
     }
