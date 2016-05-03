@@ -39,4 +39,5 @@
     <string name="last_modified_03"> 几天前</string>
 
     <string name="error_message"> 出错了！ </string>
+    <string name="reply_count"> <xliff:g id="count">%1$s</xliff:g> 次回复</string>
 </resources>

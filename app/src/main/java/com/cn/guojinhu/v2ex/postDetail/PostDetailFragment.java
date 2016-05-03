@@ -5,11 +5,12 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.cn.guojinhu.v2ex.R;
 import com.cn.guojinhu.v2ex.adapter.ReplyAdapter;
@@ -17,10 +18,15 @@ import com.cn.guojinhu.v2ex.data.Member;
 import com.cn.guojinhu.v2ex.data.Node;
 import com.cn.guojinhu.v2ex.data.Post;
 import com.cn.guojinhu.v2ex.data.Reply;
-import com.cn.guojinhu.v2ex.widget.RecyclerViewHeader;
+import com.cn.guojinhu.v2ex.utils.BitmapUtils;
+import com.cn.guojinhu.v2ex.utils.DateUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import space.sye.z.library.RefreshRecyclerView;
+import space.sye.z.library.manager.RecyclerMode;
+import space.sye.z.library.manager.RecyclerViewManager;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -31,8 +37,8 @@ public class PostDetailFragment extends Fragment implements PostDetailContract.V
     private PostDetailContract.Presenter mPresenter;
     private View rootView;
     private ProgressBar progressBar;
-    private RecyclerView recycler_detail;
-    private RecyclerViewHeader header;
+    private RefreshRecyclerView recycler_detail;
+    private View header;
 
     private ReplyAdapter mAdapter;
 
@@ -93,17 +99,36 @@ public class PostDetailFragment extends Fragment implements PostDetailContract.V
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_post_detail, container, false);
         progressBar = (ProgressBar) rootView.findViewById(R.id.progressBar);
-        recycler_detail = (RecyclerView) rootView.findViewById(R.id.recyler_detail);
-        recycler_detail.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
-        recycler_detail.setAdapter(mAdapter);
-        header = (RecyclerViewHeader) rootView.findViewById(R.id.header);
-        header.attachTo(recycler_detail);
+        recycler_detail = (RefreshRecyclerView) rootView.findViewById(R.id.recyler_detail);
+        //recycler_detail.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
+        //recycler_detail.setAdapter(mAdapter);
+        header = View.inflate(getActivity(),R.layout.detail_top,null);
+        initHeader(header);
+        RecyclerViewManager.with(mAdapter,new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false))
+                           .setMode(RecyclerMode.NONE)
+                           .addHeaderView(header,0)
+                           .into(recycler_detail, getActivity());
         return rootView;
     }
 
-    @Override
-    public void showUI(Post post) {
 
+    @Override
+    public void showUI(Post post, Member member) {
+        text_title.setText(post.title);
+        text_name.setText(member.username);
+        text_modify.setText(DateUtils.longToDate(getActivity(), post.last_modified));
+        text_reply.setText(DateUtils.replies(getActivity(),post.replies));
+        BitmapUtils.display(getActivity(), image_avatar, member.avatar_large);
+    }
+
+    private TextView text_title,text_name,text_modify,text_reply;
+    private ImageView image_avatar;
+    private void initHeader(View header) {
+        text_title = (TextView) header.findViewById(R.id.text_title);
+        text_name = (TextView) header.findViewById(R.id.text_name);
+        text_modify = (TextView) header.findViewById(R.id.text_modify);
+        text_reply = (TextView) header.findViewById(R.id.text_replies);
+        image_avatar = (ImageView) header.findViewById(R.id.image_avatar);
     }
 
     @Override

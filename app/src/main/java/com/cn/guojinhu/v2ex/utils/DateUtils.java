@@ -17,10 +17,13 @@ public class DateUtils {
         } else if (delta < 60 * 60 * 24) {
             long hour = delta / 3600;
             long minite = delta - hour * 3600;
-            return context.getResources().getString(R.string.last_modified_02, String.valueOf(hour),String.valueOf(minite));
+            return context.getResources().getString(R.string.last_modified_02, String.valueOf(hour));
         } else {
             return context.getResources().getString(R.string.last_modified_03);
         }
+    }
 
+    public static String replies(Context context, long replies){
+        return context.getResources().getString(R.string.reply_count,String.valueOf(replies));
     }
 }

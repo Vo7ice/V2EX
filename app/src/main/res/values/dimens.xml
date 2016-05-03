@@ -9,4 +9,6 @@
     <dimen name="attachinfo_textsize">12sp</dimen>
     <dimen name="repliy_content_textsize">18sp</dimen>
     <dimen name="repliy_textsize">12sp</dimen>
+
+    <dimen name="avatar_size">50dp</dimen>
 </resources>
