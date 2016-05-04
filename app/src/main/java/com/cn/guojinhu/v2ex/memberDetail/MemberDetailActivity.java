@@ -18,6 +18,7 @@ public class MemberDetailActivity extends AppCompatActivity {
 
         MemberDetailFragment memberDetailFragment =
                 (MemberDetailFragment) getSupportFragmentManager().findFragmentById(R.id.contentFrame);
+
         if (null == memberDetailFragment){
             memberDetailFragment = MemberDetailFragment.newInstance();
             ActivityUtils.addFragmentToActivity(getSupportFragmentManager(), memberDetailFragment, R.id.contentFrame);

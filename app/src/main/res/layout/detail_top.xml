@@ -6,85 +6,119 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:layout_margin="5dp"
+    android:layout_marginEnd="3dp"
+    android:layout_marginStart="3dp"
     android:descendantFocusability="blocksDescendants"
     app:cardCornerRadius="5dp"
     app:cardElevation="5dp"
     app:contentPadding="5dp">
 
-    <RelativeLayout
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingEnd="10dp"
-        android:paddingStart="10dp">
 
-        <LinearLayout
+
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_marginEnd="@dimen/avatar_size"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/text_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/avatar_size"
                 android:gravity="left"
                 android:paddingEnd="3dp"
                 android:paddingStart="3dp"
                 android:text="POST_DETAIL_TITLE12321321321231"
-                android:textSize="20sp"
+                android:textColor="@color/material_blueGrey_500"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <ImageView
+                android:id="@+id/image_avatar"
+                android:layout_width="@dimen/avatar_size"
+                android:layout_height="@dimen/avatar_size"
+                android:layout_alignParentEnd="true"
+                android:src="@mipmap/ic_launcher" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_margin="3dp"
+            android:background="@color/material_grey_700" />
+
+        <TextView
+            android:id="@+id/text_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingEnd="3dp"
+            android:paddingStart="3dp"
+            android:text="4564651231231231654562312316545613"
+            android:textColor="@color/material_blueGrey_700"
+            android:textSize="18sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_margin="3dp"
+            android:background="@color/material_grey_500" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:orientation="horizontal"
+            android:paddingEnd="3dp"
+            android:paddingStart="3dp">
+
+            <TextView
+                android:id="@+id/text_name"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:orientation="horizontal"
-                android:paddingEnd="3dp"
-                android:paddingStart="3dp">
+                android:text="Member name"
+                android:textColor="@color/material_grey_800"
+                android:textSize="12sp" />
 
-                <TextView
-                    android:id="@+id/text_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Member name" />
+            <View
+                android:layout_width="3dp"
+                android:layout_height="3dp"
+                android:layout_gravity="center"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="5dp"
+                android:background="@drawable/shape_round_circle" />
 
-                <View
-                    android:layout_width="3dp"
-                    android:layout_height="3dp"
-                    android:layout_gravity="center"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginStart="5dp"
-                    android:background="@drawable/shape_round_circle" />
+            <TextView
+                android:id="@+id/text_modify"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="18小時前"
+                android:textSize="12sp" />
 
-                <TextView
-                    android:id="@+id/text_modify"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="18小時前" />
+            <View
+                android:layout_width="3dp"
+                android:layout_height="3dp"
+                android:layout_gravity="center"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="5dp"
+                android:background="@drawable/shape_round_circle" />
 
-                <View
-                    android:layout_width="3dp"
-                    android:layout_height="3dp"
-                    android:layout_gravity="center"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginStart="5dp"
-                    android:background="@drawable/shape_round_circle" />
-
-                <TextView
-                    android:id="@+id/text_replies"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="1275次回复" />
-            </LinearLayout>
-
+            <TextView
+                android:id="@+id/text_replies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1275次回复"
+                android:textSize="12sp" />
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/image_avatar"
-            android:layout_width="@dimen/avatar_size"
-            android:layout_height="@dimen/avatar_size"
-            android:layout_alignParentEnd="true"
-            android:src="@mipmap/ic_launcher" />
-    </RelativeLayout>
+    </LinearLayout>
+
+
 </android.support.v7.widget.CardView>

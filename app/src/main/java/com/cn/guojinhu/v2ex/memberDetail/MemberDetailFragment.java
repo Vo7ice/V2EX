@@ -11,9 +11,6 @@ import com.cn.guojinhu.v2ex.R;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-/**
- * Created by guojin.hu on 2016/4/22.
- */
 public class MemberDetailFragment extends Fragment implements MemberDetailContract.View {
 
 
