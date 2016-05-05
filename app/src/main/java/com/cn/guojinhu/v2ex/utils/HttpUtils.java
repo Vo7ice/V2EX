@@ -4,6 +4,8 @@ package com.cn.guojinhu.v2ex.utils;
 import android.util.Log;
 
 import com.cn.guojinhu.v2ex.api.Contants;
+import com.cn.guojinhu.v2ex.data.Member;
+import com.cn.guojinhu.v2ex.data.MemberDetail;
 import com.cn.guojinhu.v2ex.data.Nodes;
 import com.cn.guojinhu.v2ex.data.Post;
 import com.cn.guojinhu.v2ex.data.Reply;
@@ -38,10 +40,10 @@ public class HttpUtils {
         @GET(Contants.API_LASTEST)
         Call<List<Post>> listPosts();
 
-        @Headers({"Origin:v2ex.com","Referer:v2ex.com/signin","Content-Type:application/x-www-form-urlencoded"})
+        @Headers({"Origin:v2ex.com", "Referer:v2ex.com/signin", "Content-Type:application/x-www-form-urlencoded"})
         @FormUrlEncoded
         @POST(Contants.API_SIGN_IN)
-        Call<ResponseBody> signin(@Field("u") String username,@Field("p") String password,@Field("next") String next,@Field("once") String once);
+        Call<ResponseBody> signin(@Field("u") String username, @Field("p") String password, @Field("next") String next, @Field("once") String once);
 
         @GET("http://v2ex.com/signin")
         Observer<ResponseBody> signon();
@@ -60,13 +62,26 @@ public class HttpUtils {
 
         @GET(Contants.API_REPLY_ID)
         Observable<List<Reply>> getReplyListById(@Query("topic_id") long id);
+
+        @GET(Contants.API_MEMBER_DETAIL)
+        Observable<MemberDetail> getMemberDetailByUsername(@Query("username") String username);
     }
 
     public static String getOnceStringFromHtmlResponseObject(String content) {
-        Pattern pattern = Pattern.compile("<input type=\"hidden\" value=\"([0-9]+)\" name=\"once\" />");
+        Pattern pattern = Pattern.compile("<input ty    pe=\"hidden\" value=\"([0-9]+)\" name=\"once\" />");
         final Matcher matcher = pattern.matcher(content);
         if (matcher.find())
             return matcher.group(1);
+        return null;
+    }
+
+    public static String[] getUrlFromContent(String content) {
+        Pattern p = Pattern.compile("^(http|www|ftp|)?(://)?(\\w+(-\\w+)*)(\\.(\\w+(-\\w+)*))*((:\\d+)?)(/(\\w+(-\\w+)*))*(\\.?(\\w)*)(\\?)?(((\\w*%)*(\\w*\\?)*(\\w*:)*(\\w*\\+)*(\\w*\\.)*(\\w*&)*(\\w*-)*(\\w*=)*(\\w*%)*(\\w*\\?)*(\\w*:)*(\\w*\\+)*(\\w*\\.)*(\\w*&)*(\\w*-)*(\\w*=)*)*(\\w*)*)$",
+                Pattern.CASE_INSENSITIVE);
+        final Matcher matcher = p.matcher(content);
+        if (matcher.find()){
+            
+        }
         return null;
     }
 

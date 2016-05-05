@@ -74,4 +74,8 @@ public class PostDetailPresenter implements PostDetailContract.Presenter {
                 });
     }
 
+    @Override
+    public void openMemberDetail(Member member) {
+        mPostDetailView.showMemberDetailUI(member);
+    }
 }

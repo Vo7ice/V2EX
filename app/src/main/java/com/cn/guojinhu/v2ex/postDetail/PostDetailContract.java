@@ -25,8 +25,11 @@ public class PostDetailContract {
         void showSnackBar(int resId);
 
         int getHeaderVisibility();
+
+        void showMemberDetailUI(Member member);
     }
 
     interface Presenter extends BasePresenter {
+        void openMemberDetail(Member member);
     }
 }

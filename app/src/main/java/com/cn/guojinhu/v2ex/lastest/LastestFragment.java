@@ -148,6 +148,7 @@ public class LastestFragment extends Fragment implements LastestContract.View{
     @Override
     public void showMemberDetailUI(Member member) {
         Intent intent = new Intent("android.intent.action.MEMBER_DETAIL");
+        intent.putExtra(KEY_MEMBER,member);
         startActivity(intent);
     }
 
