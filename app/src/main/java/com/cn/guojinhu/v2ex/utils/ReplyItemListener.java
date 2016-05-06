@@ -1,5 +1,7 @@
 package com.cn.guojinhu.v2ex.utils;
 
-public interface ReplyItemListener {
+import com.cn.guojinhu.v2ex.data.Member;
 
+public interface ReplyItemListener {
+    void onReplyMemberClick(Member member);
 }

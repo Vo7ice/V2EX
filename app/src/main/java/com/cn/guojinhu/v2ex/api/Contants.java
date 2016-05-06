@@ -12,5 +12,6 @@ public class Contants {
     public static final String API_STATS = "/api/site/stats.json";
     public static final String API_POST_ID = "/api/topics/show.json";
     public static final String API_REPLY_ID = "/api/replies/show.json";
+    public static final String API_MEMBER_DETAIL = "/api/members/show.json";
 
 }

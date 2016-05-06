@@ -65,33 +65,35 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.LastestViewHol
         Log.i("Vo7ice", "url:" + post.url + ",avatar:" + post.node);
         BitmapUtils.display(mContext, holder.image_avatar, post.member.avatar_large);
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mPostItemListener.onPostItemClick(post);
-            }
-        });
+        if (null != mPostItemListener) {
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mPostItemListener.onPostItemClick(post);
+                }
+            });
 
-        holder.text_user_name.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mPostItemListener.onPostMemberClick(post.member);
-            }
-        });
+            holder.text_user_name.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mPostItemListener.onPostMemberClick(post.member);
+                }
+            });
 
-        holder.image_avatar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mPostItemListener.onPostMemberClick(post.member);
-            }
-        });
+            holder.image_avatar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mPostItemListener.onPostMemberClick(post.member);
+                }
+            });
 
-        holder.text_node_name.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mPostItemListener.onPostNodeClick(post.node);
-            }
-        });
+            holder.text_node_name.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mPostItemListener.onPostNodeClick(post.node);
+                }
+            });
+        }
     }
 
     @Override

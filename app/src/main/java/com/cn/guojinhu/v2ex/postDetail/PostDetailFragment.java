@@ -1,5 +1,6 @@
 package com.cn.guojinhu.v2ex.postDetail;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
@@ -20,6 +21,8 @@ import com.cn.guojinhu.v2ex.data.Post;
 import com.cn.guojinhu.v2ex.data.Reply;
 import com.cn.guojinhu.v2ex.utils.BitmapUtils;
 import com.cn.guojinhu.v2ex.utils.DateUtils;
+import com.cn.guojinhu.v2ex.utils.PostItemListener;
+import com.cn.guojinhu.v2ex.utils.ReplyItemListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,8 +66,21 @@ public class PostDetailFragment extends Fragment implements PostDetailContract.V
             member = getArguments().getParcelable(KEY_MEMBER);
             node = getArguments().getParcelable(KEY_NODE);
         }
-        mAdapter = new ReplyAdapter(getActivity(), new ArrayList<Reply>());
+        mAdapter = new ReplyAdapter(getActivity(), new ArrayList<Reply>(),mItemListener);
     }
+
+
+    /**
+     * click for post recyclerview
+     */
+    ReplyItemListener mItemListener = new ReplyItemListener(){
+
+        @Override
+        public void onReplyMemberClick(Member member) {
+            mPresenter.openMemberDetail(member);
+        }
+    };
+
 
     public static PostDetailFragment newInstance(Post post, Node node, Member member) {
         if (null == instance) {
@@ -157,5 +173,11 @@ public class PostDetailFragment extends Fragment implements PostDetailContract.V
     @Override
     public int getHeaderVisibility() {
         return header.getVisibility();
+    }
+
+    @Override
+    public void showMemberDetailUI(Member member) {
+        Intent intent = new Intent("android.intent.action.MEMBER_DETAIL");
+        startActivity(intent);
     }
 }
