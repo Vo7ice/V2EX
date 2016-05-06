@@ -43,10 +43,13 @@ public class HttpUtils {
         @Headers({"Origin:v2ex.com", "Referer:v2ex.com/signin", "Content-Type:application/x-www-form-urlencoded"})
         @FormUrlEncoded
         @POST(Contants.API_SIGN_IN)
-        Call<ResponseBody> signin(@Field("u") String username, @Field("p") String password, @Field("next") String next, @Field("once") String once);
+        Call<ResponseBody> postSignin(@Field("u") String username,
+                                      @Field("p") String password,
+                                      @Field("next") String next,
+                                      @Field("once") String once);
 
         @GET("http://v2ex.com/signin")
-        Observer<ResponseBody> signon();
+        Call<ResponseBody> getSignin();
 
         @GET(Contants.API_STATS)
         Call<Stats> getStats();
@@ -68,7 +71,7 @@ public class HttpUtils {
     }
 
     public static String getOnceStringFromHtmlResponseObject(String content) {
-        Pattern pattern = Pattern.compile("<input ty    pe=\"hidden\" value=\"([0-9]+)\" name=\"once\" />");
+        Pattern pattern = Pattern.compile("<input type=\"hidden\" value=\"([0-9]+)\" name=\"once\" />");
         final Matcher matcher = pattern.matcher(content);
         if (matcher.find())
             return matcher.group(1);
